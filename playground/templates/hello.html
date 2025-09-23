@@ -11,5 +11,10 @@
   {% else %}
     <h1>Hello World!</h1>
   {% endif %}
+
+  {% for product in products %}
+    <h3>{{product.title}} - {{product.unit_price}}</h3>
+    <p>{{product.description}}</p>
+  {% endfor %}
 </body>
 </html>
