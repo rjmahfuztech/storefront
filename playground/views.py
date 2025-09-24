@@ -23,8 +23,15 @@ def say_hello(request):
     # products = Product.objects.filter(inventory=F('unit_price'))
 
     # Products: Using F object we can also reference a field in a related table
-    products = Product.objects.filter(inventory=F('collection__id'))
+    # products = Product.objects.filter(inventory=F('collection__id'))
 
+    # Products: Sorting products using order_by() and we can reverse it using reverse()
+    products = Product.objects.order_by('unit_price', '-title').reverse()
+    products = Product.objects.filter(collection__id=1).order_by('unit_price')
+    product = Product.objects.order_by('unit_price')[0] # it's give the 1st sorted object not queryset
+    # similar
+    product = Product.objects.earliest('unit_price') # sort in ascending and return the first object
+    product = Product.objects.latest('unit_price') # sort in descending and return the first object
 
 
     return render(request, 'hello.html', {'name': 'Mahfuz Islam', 'products': list(products)})
