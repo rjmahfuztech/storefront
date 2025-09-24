@@ -12,9 +12,10 @@
     <h1>Hello World!</h1>
   {% endif %}
 
-  {% for product in products %}
-    <h3>{{product.title}} - {{product.unit_price}}</h3>
-    <p>{{product.description}}</p>
-  {% endfor %}
+  <ul>
+    {% for product in products %}
+      <li>{{product.title}} - {{product.inventory}} and price - {{product.unit_price}}</li>
+    {% endfor %}
+  </ul>
 </body>
 </html>
