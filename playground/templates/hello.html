@@ -15,7 +15,7 @@
   <ul>
     {% for product in products %}
       {% comment %} <li>{{product.title}} - {{product.inventory}} and price - {{product.unit_price}}</li> {% endcomment %}
-      <li>{{product.title}}</li>
+      <li>{{product.title}} and ${{product.unit_price}} - {{product.description}}</li>
     {% endfor %}
   </ul>
 </body>
