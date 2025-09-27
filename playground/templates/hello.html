@@ -12,20 +12,6 @@
     <h1>Hello World!</h1>
   {% endif %}
 
-  <ul>
-    {% for order in orders %}
-      {% comment %} <li>{{product.title}} - {{product.inventory}} and price - {{product.unit_price}}</li> {% endcomment %}
-      {% comment %} <li>{{product.title}} and collection: {{product.collection.title}}</li> {% endcomment %}
-      <li>{{order.id}} and customer: {{order.customer.first_name}} {{order.customer.last_name}}
-        <div>
-          <ul>
-            {% for item in order.orderitem_set.all %}
-            <li>{{item.product.title}}</li>
-          {% endfor %}
-          </ul>
-        </div>
-      </li>
-    {% endfor %}
-  </ul>
+  <h2>{{result}}</h2>
 </body>
 </html>
