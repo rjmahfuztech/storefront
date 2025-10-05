@@ -6,7 +6,8 @@ from tags.models import TaggedItem
 
 
 def say_hello(request):
-    # Querying Generic Relationships
-    TaggedItem.objects.get_tags_for(Product, 1)
+    # Understanding Queryset cache
+    queryset = Product.objects.all()
+    # list(queryset)
 
-    return render(request, 'hello.html', {'name': 'Mahfuz Islam'})
+    return render(request, 'hello.html', {'name': 'Mahfuz Islam',})
