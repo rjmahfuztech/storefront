@@ -1,28 +1,21 @@
 from django.shortcuts import render
-from store.models import Product, Collection
-
+from store.models import Product, Collection, Order, OrderItem
+from django.db import transaction
 
 
 def say_hello(request):
-    # updating objects
-    collection = Collection.objects.get(pk=11)
-    collection.title = 'Video Games'
-    collection.featured_product = None
-    collection.save()
+    # Transactions
+    with transaction.atomic():
+        order = Order()
+        order.customer_id = 1
+        order.save()
 
-    # another way
-    Collection.objects.filter(pk=11).update(featured_product=None)
-
-
-    # deleting objects
-    
-    # single delete
-    collection = Collection(pk=13)
-    # collection.delete()
-
-    # multiple delete
-    Collection.objects.filter(id__gt=11).delete()
-
+        item = OrderItem()
+        item.order = order
+        item.product_id = -1
+        item.quantity = 1
+        item.unit_price = 10
+        item.save()
 
 
     return render(request, 'hello.html', {'name': 'Mahfuz Islam',})
