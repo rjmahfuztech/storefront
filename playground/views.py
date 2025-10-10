@@ -4,18 +4,10 @@ from django.db import transaction
 
 
 def say_hello(request):
-    # Transactions
-    with transaction.atomic():
-        order = Order()
-        order.customer_id = 1
-        order.save()
-
-        item = OrderItem()
-        item.order = order
-        item.product_id = -1
-        item.quantity = 1
-        item.unit_price = 10
-        item.save()
+    # Executing Raw SQL Queries
+    queryset = Product.objects.raw('SELECT * FROM store_product')
+    # here we can't access like queryset.filter or queryset.object etc.. not possible for raw queries
 
 
-    return render(request, 'hello.html', {'name': 'Mahfuz Islam',})
+
+    return render(request, 'hello.html', {'name': 'Mahfuz Islam', 'results': list(queryset)})
