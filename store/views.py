@@ -7,7 +7,7 @@ from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from rest_framework.mixins import CreateModelMixin, RetrieveModelMixin, DestroyModelMixin, UpdateModelMixin
 from django_filters.rest_framework import DjangoFilterBackend
 from django.db.models import Count
-from .serializers import ProductSerializer, CollectionSerializer, ReviewSerializer, CartSerializer, AddCartItemSerializer, CartItemSerializer, UpdateCartItemSerializer, CustomerSerializer, CreateOrderSerializer, OrderSerializer
+from .serializers import ProductSerializer, CollectionSerializer, ReviewSerializer, CartSerializer, AddCartItemSerializer, CartItemSerializer, UpdateCartItemSerializer, CustomerSerializer, CreateOrderSerializer, OrderSerializer, UpdateOrderSerializer
 from .models import Product, Collection, OrderItem, Review, Cart, CartItem, Customer, Order
 from .filters import ProductFilter
 from .pagination import DefaultPagination
@@ -129,4 +129,6 @@ class OrderViewSet(ModelViewSet):
     def get_serializer_class(self):
         if self.request.method == 'POST':
             return CreateOrderSerializer
+        elif self.request.method == 'PATCH':
+            return UpdateOrderSerializer
         return OrderSerializer
